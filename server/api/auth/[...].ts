@@ -22,11 +22,19 @@ export default NuxtAuthHandler({
       authorize (credentials: any) {
 
 
-        const user = { id: '1', name: 'J Smith', username: 'jsmith', password: 'hunter2' }
+        const users = [
+          { id: '1', name: 'Partha', username: 'partha', password: 'partha', email: 'partha@gmail.com' },
+          { id: '2', name: 'Johm', username: 'mitu', password: 'mitu', email: 'mitu@gmail.com' },
+          { id: '3', name: 'Linkon', username: 'tumpa', password: 'tumpa', email: 'tumpa@gmail.com' },
+          { id: '4', name: 'God', username: 'mizan', password: 'mizan', email: 'mizan@gmail.com' },
+        ]
+        
 
-        if (credentials?.username === user.username && credentials?.password === user.password) {
-          
-          return user
+        const authUser = users.find( user => user.username === credentials?.username && user.password === credentials?.password)
+
+
+        if (authUser) {
+          return authUser
         } else {
  
           console.error('Warning: Malicious login attempt registered, bad credentials provided')

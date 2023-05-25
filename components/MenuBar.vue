@@ -9,6 +9,9 @@
       <NuxtLink class="nav-link" v-if="!authenticate" to="/">Login</NuxtLink>
     </li>
     <li class="nav-item">
+      <NuxtLink class="nav-link" v-if="!authenticate" to="/register">Register</NuxtLink>
+    </li>
+    <li class="nav-item">
       <NuxtLink class="nav-link" v-if="authenticate" href="/admin">Dashboard</NuxtLink>
     </li>
     <li class="nav-item">

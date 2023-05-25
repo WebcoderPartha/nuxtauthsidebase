@@ -1,6 +1,7 @@
 // file: ~/server/api/auth/[...].ts
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { NuxtAuthHandler } from '#auth'
+import { useDatabase } from '../../../composables/database'
 
 export default NuxtAuthHandler({
 
@@ -22,15 +23,10 @@ export default NuxtAuthHandler({
       authorize (credentials: any) {
 
 
-        const users = [
-          { id: '1', name: 'Partha', username: 'partha', password: 'partha', email: 'partha@gmail.com' },
-          { id: '2', name: 'Johm', username: 'mitu', password: 'mitu', email: 'mitu@gmail.com' },
-          { id: '3', name: 'Linkon', username: 'tumpa', password: 'tumpa', email: 'tumpa@gmail.com' },
-          { id: '4', name: 'God', username: 'mizan', password: 'mizan', email: 'mizan@gmail.com' },
-        ]
+        const users = useDatabase()
         
 
-        const authUser = users.find( user => user.username === credentials?.username && user.password === credentials?.password)
+        const authUser = users.find( (user:any) => user.username === credentials?.username && user.password === credentials?.password)
 
 
         if (authUser) {

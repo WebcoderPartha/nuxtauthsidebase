@@ -65,18 +65,19 @@ const Toast = $swal.mixin({
         password: ''
     }))
 
-    const {signIn} = useAuth()
+    const {signIn, status} = useAuth()
 
     const logIn = async (e) => {
         const username = form.value.username
         const password = form.value.password
-        await signIn('credentials', {username, password, callbackUrl: '/admin'})
+        await signIn('credentials', {username, password, callbackUrl: '/register'})
      
         e.target.reset()
         Toast.fire({
         icon: 'success',
         title: 'Logged in successfully!'
         })
+        console.log(status)
 
     }
 

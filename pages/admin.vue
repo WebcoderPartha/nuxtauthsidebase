@@ -1,23 +1,22 @@
 <template>
     <div>
-        <h2>admin</h2>
-        <pre>
-        <!-- {{ database }} -->
+      <pre>
+      {{ mydata }}
     </pre>
-        <pre>
-            {{ session }}
-        </pre>
     </div>
-</template>
-
-<script setup>
-    definePageMeta({
-        middleware: 'auth'
-    })
-    const database = useDatabase()
-    const session = await useFetch('/api/me')
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+  </template>
+  <script setup lang="ts">
+    //  definePageMeta({
+    //     middleware: 'auth'
+    // })
+ 
+  const {data} = await useFetch('/api/me')
+  
+  console.log(data.value.access_token)
+  const mydata = await useFetch('http://127.0.0.1:8000/api/auth/me', {
+    method: 'get',
+    headers: {
+      authorization: "Bearer " + data.value.access_token
+    }
+  })
+  </script>
